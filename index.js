@@ -37,6 +37,14 @@ async function run() {
       const result = await toolCollection.insertOne(tool);
       res.send(result);
     });
+
+    //delete tool
+    app.delete("/tools/:name", async (req, res) => {
+      const name = req.params.name;
+      const filter = { name: name };
+      const result = await toolCollection.deleteOne(filter);
+      res.send(result);
+    });
   } finally {
   }
 }
