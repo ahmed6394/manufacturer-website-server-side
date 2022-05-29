@@ -81,7 +81,7 @@ async function run() {
       res.send(result);
     });
 
-    //get purchase data
+    //get purchase dat
     app.get("/purchase", verifyJWT, async (req, res) => {
       const user = req.query.user;
       const decodedEmail = req.decoded.email;
