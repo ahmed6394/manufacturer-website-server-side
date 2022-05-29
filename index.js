@@ -43,6 +43,7 @@ async function run() {
     const toolCollection = client.db("toolbox").collection("tools");
     const purchaseCollection = client.db("toolbox").collection("purchase");
     const userCollection = client.db("toolbox").collection("users");
+    const reviewCollection = client.db("toolbox").collection("reviews");
 
     //get all tools
     app.get("/tools", async (req, res) => {
@@ -63,6 +64,20 @@ async function run() {
       const name = req.params.name;
       const filter = { name: name };
       const result = await toolCollection.deleteOne(filter);
+      res.send(result);
+    });
+
+    //add review
+    app.post("/reviews", async (req, res) => {
+      const review = req.body;
+      const result = await reviewCollection.insertOne(review);
+      res.send(result);
+    });
+
+    //get rewviews
+    app.get("/reviews", async (req, res) => {
+      const query = {};
+      const result = await reviewCollection.find(query).toArray();
       res.send(result);
     });
 
