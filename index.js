@@ -74,7 +74,7 @@ async function run() {
       res.send(result);
     });
 
-    //get rewviews
+    //get rewview
     app.get("/reviews", async (req, res) => {
       const query = {};
       const result = await reviewCollection.find(query).toArray();
